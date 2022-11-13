@@ -1,0 +1,130 @@
+name: hashtag-counter
+
+extra-source-files:
+- config.toml
+- README.md
+
+dependencies:
+- base >= 4.7 && < 5
+
+default-extensions:
+  - AllowAmbiguousTypes
+  - ApplicativeDo
+  - BangPatterns
+  - BlockArguments
+  - ConstraintKinds
+  - DataKinds
+  - DefaultSignatures
+  - DeriveAnyClass
+  - DeriveFoldable
+  - DeriveFunctor
+  - DeriveGeneric
+  - DeriveTraversable
+  - DerivingStrategies
+  - DerivingVia
+  - FlexibleContexts
+  - FlexibleInstances
+  - FunctionalDependencies
+  - GADTs
+  - GeneralisedNewtypeDeriving
+  - ImportQualifiedPost
+  - LambdaCase
+  - MagicHash
+  - MultiParamTypeClasses
+  - MultiWayIf
+  - NamedFieldPuns
+  - OverloadedStrings
+  - PackageImports
+  - QuantifiedConstraints
+  - QuasiQuotes
+  - PatternSynonyms
+  - RankNTypes
+  - RecordWildCards
+  - ScopedTypeVariables
+  - StandaloneDeriving
+  - StrictData
+  - TemplateHaskell
+  - TupleSections
+  - TypeApplications
+  - TypeFamilies
+  - TypeOperators
+  - ViewPatterns
+
+ghc-options:
+  - -Weverything
+  - -Wno-missing-exported-signatures
+  - -Wno-missing-import-lists
+  - -Wno-missed-specialisations
+  - -Wno-all-missed-specialisations
+  - -Wno-unsafe
+  - -Wno-safe
+  - -Wno-missing-local-signatures
+  - -Wno-monomorphism-restriction
+  - -Wno-implicit-prelude
+  - -Wno-partial-fields
+  - -Wno-missing-safe-haskell-mode
+  - -Wno-prepositive-qualified-module
+  - -Wno-unused-packages
+
+library:
+  source-dirs: src
+  dependencies:
+  - aeson
+  - aeson-qq
+  - lens
+  - mtl
+  - servant
+  - servant-client
+  - servant-client-core
+  - time
+
+executables:
+  hashtag-counter-exe:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - aeson
+    - containers
+    - free
+    - hashtag-counter
+    - http-client
+    - http-conduit
+    - http-types
+    - optparse-applicative
+    - servant-client
+    - servant-client-core
+    - text
+    - time
+    - tomland
+
+tests:
+  hashtag-counter-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - aeson
+    - async
+    - containers
+    - free
+    - hashtag-counter
+    - http-client
+    - http-conduit
+    - http-types
+    - HUnit
+    - mtl
+    - servant
+    - servant-client
+    - servant-client-core
+    - servant-server
+    - tasty
+    - tasty-hunit
+    - text
+    - warp
